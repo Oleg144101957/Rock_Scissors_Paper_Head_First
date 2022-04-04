@@ -20,7 +20,10 @@ fun getHumanChoice(optionsParam: Array<String>): String {
         print("Please enter one of the following:")
         for (item in optionsParam) print(" $item")
         println(".")
-        var humanInput = readLine()
+        var humanInput: String? = readLine()
+        if (humanInput != null) {
+            humanInput = humanInput.substring(0,1).uppercase()+humanInput.substring(1,humanInput.length).lowercase()
+        }
 
         if (humanInput != null && humanInput in optionsParam) {
             isValidChoice = true
@@ -32,7 +35,7 @@ fun getHumanChoice(optionsParam: Array<String>): String {
 }
 
 fun printResult (computer: String, human: String){
-    var result: String
+    val result: String
     if (computer == human) result = "Tie"
     else if ( (computer == "Rock" && human == "Paper")
         || (computer == "Paper" && human == "Scissors")
